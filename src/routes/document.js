@@ -1,10 +1,11 @@
 const router = require('express').Router()
+const { createDocument } = require('../controller/document')
 
 router.route('/:name')
     /**
      * creates a new field
      */
-    .post()
+    .post(createDocument)
     /**
      * fetches all the data
      */
