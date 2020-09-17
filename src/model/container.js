@@ -4,7 +4,7 @@ const containerSchema = new mongoose.Schema({
     userId: {
         type: String,
     },
-    Data: []
+    data: []
 })
 
 const Container = mongoose.model('container', containerSchema)
