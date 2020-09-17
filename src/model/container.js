@@ -1,10 +1,15 @@
 const mongoose = require('mongoose')
 
+const { documentSchema } = require('./document')
+
 const containerSchema = new mongoose.Schema({
-    userId: {
+    name: {
         type: String,
+        required: true,
+        unique: true
     },
-    data: []
+
+    documents: [documentSchema]
 })
 
 const Container = mongoose.model('container', containerSchema)
