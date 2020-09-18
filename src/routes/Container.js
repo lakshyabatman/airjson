@@ -2,20 +2,15 @@ const router = require('express').Router()
 const { Container } = require('../model/container')
 
 router.route('/')
-    .post(async (req, res) => {
-        const { data, userId } = req.body
-        let container = new Container({
-            userId: userId,
-            data: data
-        })
-
-        let response = await container.save()
-
-        return res.status(200).json(response)
-    })
-    .get(async (req, res) => {
-        let con = await Container.find({})
-        return res.status(200).json(con)
-    })
+    /**
+     * Create a container
+     * User needs to be logged in the website or client to create 
+     * a container
+     * Client will send json web token to create authenticate. 
+     * We can also verify and validate the user who wants to create the container.
+     * 
+     */
+    .post()
+    .get()
 
 module.exports = router
