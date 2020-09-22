@@ -1,17 +1,19 @@
 import User from '../model/user'
+import {Response, Request, NextFunction} from 'express'
 
-export default async (req, res, next) => {
-    let { api_key } = req.headers
+const middleware = (req: Request, res: Response, next: NextFunction) => {
+    const api_key:any = req.headers.api_key;
 
-    try {
-        let user = await User.findOne({ username: req.user.username })
-
-        if (api_key !== user.api_key) {
-            return res.status(401).send("unautorized")
+    User.findOne().then((user: any) => {
+        if(user.api_key != api_key) {
+            return res.status(401).send('unauthorized')
         }
 
         return next()
-    } catch (error) {
-        return res.status(404).send(error)
-    }
+    }).catch((err: any) => {
+        return res.status(404).send("error")
+    })
+
 }
+
+export default middleware
