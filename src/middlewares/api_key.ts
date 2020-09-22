@@ -11,7 +11,7 @@ const middleware = (req: Request, res: Response, next: NextFunction) => {
 
         return next()
     }).catch((err: any) => {
-        return res.status(404).send("error")
+        return res.status(404).send(err)
     })
 
 }
