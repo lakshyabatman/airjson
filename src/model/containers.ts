@@ -1,12 +1,14 @@
 import { model, Schema } from 'mongoose'
-import { documentSchema } from './document'
 
 export const containerSchema = new Schema({
     name: {
         type: String,
         required: true
     },
-    doc: [documentSchema]
+    doc: [],
+    userId: {
+        type: Schema.Types.ObjectId
+    }
 });
 
 const Container = model('container', containerSchema)
