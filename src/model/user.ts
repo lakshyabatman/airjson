@@ -1,4 +1,5 @@
-import { model, Schema } from 'mongoose';
+import { Document, Model, model, Types, Schema, Query } from 'mongoose';
+import api_key from '../middlewares/api_key';
 import { containerSchema } from './containers'
 
 const userSchema = new Schema({
@@ -12,9 +13,24 @@ const userSchema = new Schema({
         required: true,
         unique: true
     },
-    containers: [containerSchema]
+    containers: [containerSchema],
+    api_key: {
+        type: String,
+        unique: true
+    }
 })
 
-const User = model('user', userSchema)
+interface Icontainer{
+    name: String
+}
+
+interface IUserSchema extends Document{
+    username: string,
+    password: string,
+    api_key: string,
+    containers: Icontainer
+}
+
+const User = model<IUserSchema>('user', userSchema)
 
 export default User
