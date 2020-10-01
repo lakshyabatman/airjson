@@ -11,5 +11,4 @@ router.use('/document', docRoute);
 router.use('/container', containerRoute)
 router.use('/auth', authRoute)
 
-
 export default router;
